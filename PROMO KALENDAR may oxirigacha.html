@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bizbop Promo Calendar — May 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7f2;
+      --card: rgba(255,255,255,.82);
+      --text: #173024;
+      --muted: #68766f;
+      --line: rgba(23,48,36,.12);
+      --green: #00c96f;
+      --green2: #08a85f;
+      --yellow: #fff200;
+      --red: #ef2b1f;
+      --orange: #ff3b12;
+      --blue: #3957e8;
+      --purple: #8057ff;
+      --shadow: 0 20px 55px rgba(26, 55, 40, .13);
+      --radius: 28px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #101712;
+      --card: rgba(25,35,28,.86);
+      --text: #f3fff7;
+      --muted: #a9b8ae;
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 24px 80px rgba(0,0,0,.38);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0,201,111,.24), transparent 34%),
+        radial-gradient(circle at 92% 8%, rgba(255,242,0,.22), transparent 30%),
+        radial-gradient(circle at 70% 95%, rgba(255,59,18,.14), transparent 36%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background .35s ease, color .35s ease;
+    }
+
+    .page { width: min(1440px, calc(100% - 36px)); margin: 0 auto; padding: 28px 0 54px; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      padding: 34px;
+      background: linear-gradient(135deg, rgba(0,201,111,.96), rgba(4,165,93,.9));
+      box-shadow: var(--shadow);
+      color: white;
+      min-height: 280px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -130px;
+      top: -150px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      right: 160px;
+      bottom: -130px;
+      border-radius: 50%;
+      background: rgba(255,242,0,.26);
+      filter: blur(1px);
+    }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; position: relative; z-index: 2; }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 30px; letter-spacing: -.04em; }
+    .logo-mark { width: 42px; height: 42px; border-radius: 14px; background: white; display: grid; place-items: center; color: var(--green); font-weight: 900; }
+    .mode-btn { border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.14); color: white; padding: 12px 16px; border-radius: 999px; font-weight: 800; cursor: pointer; backdrop-filter: blur(10px); }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 24px; margin-top: 34px; position: relative; z-index: 2; }
+    h1 { font-size: clamp(38px, 6vw, 76px); line-height: .95; margin: 0 0 18px; letter-spacing: -.075em; max-width: 850px; }
+    .lead { font-size: 20px; line-height: 1.5; max-width: 760px; margin: 0; color: rgba(255,255,255,.88); font-weight: 500; }
+    .hero-card { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); border-radius: 30px; padding: 24px; backdrop-filter: blur(14px); }
+    .hero-card h3 { margin: 0 0 16px; font-size: 18px; }
+    .dates { display: grid; gap: 12px; }
+    .date-pill { background: white; color: #073a22; border-radius: 18px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; font-weight: 900; }
+    .date-pill span { color: var(--green2); }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 22px 0; }
+    .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+    .kpi .num { font-size: 38px; font-weight: 950; letter-spacing: -.06em; }
+    .kpi .label { color: var(--muted); font-weight: 700; margin-top: 6px; }
+
+    .section-title { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 36px 0 16px; }
+    .section-title h2 { margin: 0; font-size: 34px; letter-spacing: -.055em; }
+    .section-title p { margin: 0; color: var(--muted); font-weight: 600; max-width: 650px; text-align: right; }
+
+    .timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .event { min-height: 190px; border-radius: 26px; padding: 18px; color: white; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+    .event::after { content: ""; position: absolute; width: 150px; height: 150px; right: -56px; top: -48px; border-radius: 50%; background: rgba(255,255,255,.18); }
+    .event small { display: inline-flex; padding: 7px 11px; border-radius: 99px; background: rgba(255,255,255,.22); font-weight: 900; }
+    .event h3 { font-size: 24px; line-height: 1.05; margin: 18px 0 8px; letter-spacing: -.04em; }
+    .event p { margin: 0; color: rgba(255,255,255,.86); font-weight: 600; }
+    .e-summer { background: linear-gradient(135deg, #00c96f, #07a85f); }
+    .e-grad { background: linear-gradient(135deg, #3957e8, #7a5cff); }
+    .e-bbq { background: linear-gradient(135deg, #ff3b12, #ef2b1f); }
+    .e-eid { background: linear-gradient(135deg, #2d2016, #80613a); }
+    .e-kids { background: linear-gradient(135deg, #ffb000, #ff4d8d); }
+    .e-june { background: linear-gradient(135deg, #00b8ff, #00c96f); }
+
+    .dashboard-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 18px; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+
+    table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+    th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 0 12px; }
+    td { padding: 14px 12px; background: rgba(255,255,255,.55); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-weight: 700; }
+    [data-theme="dark"] td { background: rgba(255,255,255,.045); }
+    td:first-child { border-radius: 16px 0 0 16px; border-left: 1px solid var(--line); }
+    td:last-child { border-radius: 0 16px 16px 0; border-right: 1px solid var(--line); }
+    .tag { display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border-radius: 999px; font-size: 12px; font-weight: 950; white-space: nowrap; }
+    .t-green { background: rgba(0,201,111,.16); color: #00a65d; }
+    .t-yellow { background: rgba(255,242,0,.35); color: #b24500; }
+    .t-red { background: rgba(239,43,31,.14); color: #e5281d; }
+    .t-blue { background: rgba(57,87,232,.14); color: #3957e8; }
+    .t-purple { background: rgba(128,87,255,.14); color: #8057ff; }
+
+    .promo-stack { display: grid; gap: 14px; }
+    .stack-item { border-radius: 24px; padding: 18px; color: white; position: relative; overflow: hidden; }
+    .stack-item h3 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.04em; }
+    .stack-item p { margin: 0; opacity: .88; font-weight: 600; }
+    .green { background: linear-gradient(135deg, #00c96f, #07a85f); }
+    .yellow { background: linear-gradient(135deg, #fff200, #ffcc00); color: #e72b1f; }
+    .orange { background: linear-gradient(135deg, #ff3b12, #ff6a00); }
+    .daily { background: linear-gradient(135deg, #fff200, #ffdf00); color: #e72b1f; }
+
+    .event-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .list-card { border-radius: var(--radius); padding: 22px; color: white; box-shadow: var(--shadow); }
+    .list-card h3 { margin: 0 0 8px; font-size: 30px; letter-spacing: -.05em; }
+    .list-card .meta { opacity: .85; font-weight: 700; margin-bottom: 18px; }
+    .mini-table td { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.16); color: white; }
+    .mini-table th { color: rgba(255,255,255,.75); }
+
+    .category-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .cat { border-radius: 22px; padding: 18px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .cat b { display: block; font-size: 17px; margin-bottom: 8px; }
+    .bar { height: 10px; border-radius: 99px; background: rgba(0,201,111,.15); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--green), var(--yellow)); }
+
+    .footer-note { margin-top: 28px; border-radius: 26px; background: rgba(0,201,111,.12); border: 1px solid rgba(0,201,111,.22); padding: 20px; color: var(--muted); font-weight: 700; line-height: 1.55; }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .dashboard-grid, .event-lists { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: repeat(3, 1fr); }
+      .kpi-grid, .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-title { align-items: start; flex-direction: column; }
+      .section-title p { text-align: left; }
+    }
+    @media (max-width: 680px) {
+      .page { width: min(100% - 22px, 1440px); }
+      .hero { padding: 22px; border-radius: 26px; }
+      .timeline, .kpi-grid, .category-grid { grid-template-columns: 1fr; }
+      table { font-size: 13px; }
+      th:nth-child(5), td:nth-child(5) { display: none; }
+      .logo { font-size: 24px; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <main class="page">
+    <section class="hero">
+      <div class="topbar">
+        <div class="logo"><div class="logo-mark">b</div> bizbop supermarket</div>
+        <button class="mode-btn" onclick="toggleTheme()">🌙 / ☀️ Rejim</button>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>May oxiri 2026 Promo Dashboard</h1>
+          <p class="lead">So‘nggi qo‘ng‘iroq, Qurbon hayiti va 1-iyun oldi mavsumini hisobga olgan holda Bizbop promo mexanizmlari: Kun taklifi, Hafta chegirmasi, A-a-arzon narx va Bizbop narx.</p>
+        </div>
+        <div class="hero-card">
+          <h3>Asosiy eventlar</h3>
+          <div class="dates">
+            <div class="date-pill">25-may <span>So‘nggi qo‘ng‘iroq</span></div>
+            <div class="date-pill">26–27-may <span>Qurbon hayiti</span></div>
+            <div class="date-pill">1-iyun <span>Bolalar kuni</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <div class="kpi"><div class="num">11</div><div class="label">kunlik promo reja</div></div>
+      <div class="kpi"><div class="num">4</div><div class="label">asosiy promo mexanizm</div></div>
+      <div class="kpi"><div class="num">9+</div><div class="label">bo‘lim qamrovi</div></div>
+      <div class="kpi"><div class="num">65 mln</div><div class="label">taxminiy umumiy budget, UZS</div></div>
+    </section>
+
+    <div class="section-title">
+      <h2>Promo event timeline</h2>
+      <p>Bayramlar 2 kun oldin tayyorlov fazasi bilan boshlanadi. Har event alohida maqsad va bo‘limlar bilan ishlaydi.</p>
+    </div>
+    <section class="timeline">
+      <div class="event e-summer"><small>21–23 May</small><h3>Yoz boshlandi</h3><p>Ichimlik, muzqaymoq, meva va cold zone.</p></div>
+      <div class="event e-grad"><small>24–25 May</small><h3>Grad Party</h3><p>Ichimlik, snack, shirinlik, youth combo.</p></div>
+      <div class="event e-bbq"><small>25–28 May</small><h3>BBQ Weekend</h3><p>Go‘sht, sous, cola, chips, family basket.</p></div>
+      <div class="event e-eid"><small>25–27 May</small><h3>Hayit dasturxoni</h3><p>Go‘sht, meva, shirinlik, choy va sharbat.</p></div>
+      <div class="event e-kids"><small>29–31 May</small><h3>Bolajon Fest</h3><p>Kinder, yogurt, muzqaymoq, sharbat.</p></div>
+      <div class="event e-june"><small>1 Iyun</small><h3>Kids Day</h3><p>1-iyun uchun final traffic va family emotion.</p></div>
+    </section>
+
+    <div class="section-title">
+      <h2>Kun taklifi kalendari</h2>
+      <p>Har kun uchun asosiy bo‘lim, promo mexanizm va chegirma diapazoni.</p>
+    </div>
+    <section class="dashboard-grid">
+      <div class="card">
+        <table>
+          <thead><tr><th>Sana</th><th>Event</th><th>Fokus bo‘lim</th><th>Taklif</th><th>Mexanika</th><th>Skidka</th></tr></thead>
+          <tbody>
+            <tr><td>21-May</td><td>Yoz start</td><td>Go‘sht / gastronom</td><td>Kabob / marinad</td><td><span class="tag t-green">Hit narx</span></td><td>-15%</td></tr>
+            <tr><td>22-May</td><td>Cold zone</td><td>Muzqaymoq / ichimlik</td><td>Pepsi / muzqaymoq</td><td><span class="tag t-green">Hit narx</span></td><td>-25%</td></tr>
+            <tr><td>23-May</td><td>Family basket</td><td>Oziq-ovqat</td><td>Yog‘ / makaron</td><td><span class="tag t-purple">Bundle</span></td><td>-10%</td></tr>
+            <tr><td>24-May</td><td>Hayit prep + Bitiruv</td><td>Meva-sabzavot</td><td>Tarvuz / o‘rik</td><td><span class="tag t-green">Hit narx</span></td><td>-30%</td></tr>
+            <tr><td>25-May</td><td>So‘nggi qo‘ng‘iroq</td><td>Snack / youth</td><td>Cola + Lays</td><td><span class="tag t-blue">Combo</span></td><td>-15%</td></tr>
+            <tr><td>26-May</td><td>Hayit prep</td><td>Ichimlik</td><td>Sharbat / cola</td><td><span class="tag t-green">Hit narx</span></td><td>-20%</td></tr>
+            <tr><td>27-May</td><td>Qurbon hayiti</td><td>Hayit basket</td><td>Tort / konfet</td><td><span class="tag t-purple">Bundle</span></td><td>-15%</td></tr>
+            <tr><td>28-May</td><td>BBQ continue</td><td>Go‘sht</td><td>Tovuq / kabob</td><td><span class="tag t-green">Hit narx</span></td><td>-15%</td></tr>
+            <tr><td>29-May</td><td>Kids teaser</td><td>Muzqaymoq</td><td>Bon Pari / Korovka</td><td><span class="tag t-red">1+1</span></td><td>-50%</td></tr>
+            <tr><td>30-May</td><td>Kids Weekend</td><td>Bolalar</td><td>Kinder / yogurt</td><td><span class="tag t-red">1+1</span></td><td>-50%</td></tr>
+            <tr><td>31-May</td><td>Kids Fest</td><td>Family cold zone</td><td>Suv / sharbat</td><td><span class="tag t-green">Hit narx</span></td><td>-20%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="promo-stack">
+        <div class="stack-item green"><h3>Hafta chegirmasi</h3><p>Yashil vizual. 9 ta SKU. Haftalik traffic va regular xarid.</p></div>
+        <div class="stack-item daily"><h3>Kun taklifi</h3><p>Sariq vizual. 1 kunlik WOW effect va Telegram post.</p></div>
+        <div class="stack-item yellow"><h3>A-a-arzon narx!</h3><p>Supplier promo platformasi. 10+ SKU, 14 kunlik davr.</p></div>
+        <div class="stack-item orange"><h3>Bizbop narx</h3><p>Bozordagi yo‘q narx. 6 tagacha traffic SKU, 30 kun.</p></div>
+      </aside>
+    </section>
+
+    <div class="section-title">
+      <h2>Hafta chegirmasi bo‘lim rotation</h2>
+      <p>May oxirida hafta chegirmasi sezon va bayramlarga mos bo‘limlarga ko‘proq joy beradi.</p>
+    </div>
+    <section class="card">
+      <table>
+        <thead><tr><th>Davr</th><th>Kampaniya</th><th>9 ta asosiy bo‘lim</th><th>Min skidka</th><th>Max skidka</th><th>Asosiy maqsad</th></tr></thead>
+        <tbody>
+          <tr><td>21–27 May</td><td>Yoz start + Grad + Hayit prep</td><td>Ichimlik, muzqaymoq, snack, go‘sht, meva, sut, shirinlik, gigiena, uy kimyosi</td><td>-10%</td><td>-50%</td><td>Traffic + party + dasturxon</td></tr>
+          <tr><td>28 May–3 Iyun</td><td>Hayit continue + Kids Week</td><td>Bolalar, shirinlik, ichimlik, muzqaymoq, meva, go‘sht, sut, snack, choy/qahva</td><td>-10%</td><td>-50%</td><td>Family traffic + kids emotion</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="section-title">
+      <h2>Bayram promo ro‘yxatlari</h2>
+      <p>Bitiruv va Qurbon hayiti alohida savdo kayfiyatiga ega: biri youth basket, ikkinchisi family basket.</p>
+    </div>
+    <section class="event-lists">
+      <div class="list-card e-grad">
+        <h3>🎓 Bitiruv chegirmasi</h3>
+        <div class="meta">24–25 May · Youth / Party basket</div>
+        <table class="mini-table">
+          <thead><tr><th>Bo‘lim</th><th>Taklif</th><th>Mexanika</th><th>Skidka</th></tr></thead>
+          <tbody>
+            <tr><td>Ichimlik</td><td>Pepsi / Cola</td><td>Hit narx</td><td>-15–20%</td></tr>
+            <tr><td>Snack</td><td>Lays / popcorn</td><td>Combo</td><td>-10–15%</td></tr>
+            <tr><td>Muzqaymoq</td><td>Bon Pari / Korovka</td><td>1+1</td><td>-50%</td></tr>
+            <tr><td>Shirinlik</td><td>Kinder / Milka</td><td>Hit narx</td><td>-20–25%</td></tr>
+            <tr><td>Energetik</td><td>Flash / Adrenaline</td><td>Hit narx</td><td>-15%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="list-card e-eid">
+        <h3>🕌 Qurbon hayiti chegirmasi</h3>
+        <div class="meta">25–27 May · Family / Dasturxon basket</div>
+        <table class="mini-table">
+          <thead><tr><th>Bo‘lim</th><th>Taklif</th><th>Mexanika</th><th>Skidka</th></tr></thead>
+          <tbody>
+            <tr><td>Go‘sht</td><td>Mol go‘shti / kabob</td><td>Hit + bundle</td><td>-12–15%</td></tr>
+            <tr><td>Meva</td><td>Tarvuz / o‘rik</td><td>Hit narx</td><td>-25–30%</td></tr>
+            <tr><td>Ichimlik</td><td>Sharbat / cola</td><td>Hit narx</td><td>-15–20%</td></tr>
+            <tr><td>Shirinlik</td><td>Tort / konfet</td><td>Bundle</td><td>-15–20%</td></tr>
+            <tr><td>Choy/qahva</td><td>Choy / qahva</td><td>Hit narx</td><td>-15%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Bo‘limlar bo‘yicha promo bosimi</h2>
+      <p>May oxirida eng katta urg‘u seasonal traffic kategoriyalarga beriladi.</p>
+    </div>
+    <section class="category-grid">
+      <div class="cat"><b>Ichimlik</b><div class="bar"><span style="width:95%"></span></div></div>
+      <div class="cat"><b>Muzqaymoq</b><div class="bar"><span style="width:88%"></span></div></div>
+      <div class="cat"><b>Go‘sht</b><div class="bar"><span style="width:82%"></span></div></div>
+      <div class="cat"><b>Meva</b><div class="bar"><span style="width:78%"></span></div></div>
+      <div class="cat"><b>Snack</b><div class="bar"><span style="width:72%"></span></div></div>
+      <div class="cat"><b>Shirinlik</b><div class="bar"><span style="width:70%"></span></div></div>
+      <div class="cat"><b>Bolalar</b><div class="bar"><span style="width:66%"></span></div></div>
+      <div class="cat"><b>Sut</b><div class="bar"><span style="width:58%"></span></div></div>
+      <div class="cat"><b>Choy/qahva</b><div class="bar"><span style="width:52%"></span></div></div>
+      <div class="cat"><b>Uy kimyosi</b><div class="bar"><span style="width:40%"></span></div></div>
+    </section>
+
+    <div class="footer-note">
+      <b>Operatsion eslatma:</b> har bir promo uchun sennik ranglari saqlanadi: Hafta chegirmasi — yashil, Kun taklifi — sariq, A-a-arzon — sariq/qizil, Bizbop narx — qizil/orange. Bayram promolari kamida 2 kun oldin start qilinadi va entrance, Telegram, Instagram story hamda polka woblerlari bilan qo‘llab-quvvatlanadi.
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', next);
+      localStorage.setItem('bizbopPromoTheme', next);
+    }
+    const savedTheme = localStorage.getItem('bizbopPromoTheme');
+    if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>
